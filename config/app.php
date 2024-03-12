@@ -85,7 +85,7 @@ return [
     |
     */
 
-  'locale' => 'en',
+  'locale' => 'es',
 
   /*
     |--------------------------------------------------------------------------
@@ -161,6 +161,8 @@ return [
     /*
          * Package Service Providers...
          */
+    Laraveles\Spanish\SpanishServiceProvider::class,
+
 
     /*
          * Application Service Providers...
