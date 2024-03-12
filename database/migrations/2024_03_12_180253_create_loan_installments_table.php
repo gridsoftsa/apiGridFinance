@@ -11,14 +11,14 @@ return new class extends Migration
    */
   public function up(): void
   {
-    Schema::create('users', function (Blueprint $table) {
+    Schema::create('loan_installments', function (Blueprint $table) {
       $table->id();
-      $table->string('name');
-      $table->string('email')->unique();
-      $table->timestamp('email_verified_at')->nullable();
-      $table->string('password');
-      $table->rememberToken();
-      $table->string('profile_picture')->nullable();
+      $table->foreignId('loan_id')->constrained()->cascadeOnDelete();
+      $table->integer('installment_number');
+      $table->decimal('amount', 10, 2);
+      $table->date('due_date');
+      $table->date('paid_date')->nullable();
+      $table->boolean('is_paid')->default(false);
       $table->softDeletes();
       $table->timestamps();
     });
@@ -29,6 +29,6 @@ return new class extends Migration
    */
   public function down(): void
   {
-    Schema::dropIfExists('users');
+    Schema::dropIfExists('loan_installments');
   }
 };
